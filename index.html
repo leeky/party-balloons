@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+
+  <script>
+    $(function() {
+      createBalloon();
+      createBalloon();
+      createBalloon();
+      createBalloon();
+      createBalloon();
+    });
+
+    function createBalloon() {
+      balloon = $("<div class='balloon'></div>");
+      posx = Math.floor(Math.random() * 2020) - 50;
+      speed = Math.floor(Math.random() * 7000) + 3000;
+
+      colour = Math.floor(Math.random() * 2);
+
+      console.log("Created a balloon at " + posx + "px");
+
+      balloon.css({ left: posx + "px", top: "1080px" })
+
+      balloon.animate({ top: "-500px" }, speed, function() {
+        $( this ).remove();
+        console.log("Removed a balloon");
+        createBalloon();
+      });
+
+      $('body').append(balloon);
+    };
+
+  </script>
+
+</body>
+</html>
+
